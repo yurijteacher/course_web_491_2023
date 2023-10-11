@@ -3,24 +3,27 @@ package com.kisit.course_web_491_2023.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
+import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 
+
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "category")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
+    private String name;
+    private String description;
+    private String image;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Roles> rolesSet;
+    @OneToMany(mappedBy = "categories")
+    public List<Product> productList;
+
 }

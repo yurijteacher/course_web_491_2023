@@ -1,30 +1,31 @@
 package com.kisit.course_web_491_2023.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.Set;
+import java.math.BigDecimal;
 
-@Getter
+
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 @Entity
-@Table(name = "roles")
-public class Roles {
-
+@Table(name = "product")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
+    private String image;
+    private BigDecimal price;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category categories;
 
-    @ManyToMany(mappedBy = "rolesSet")
-    Set<Users> usersSet;
 }
